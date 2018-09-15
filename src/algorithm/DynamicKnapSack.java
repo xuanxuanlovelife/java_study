@@ -1,10 +1,15 @@
 package algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DynamicKnapSack {
     private int[] v;
     private int[] w;
     private int[][] c;
     private int weight;
+
+
 
     public DynamicKnapSack(int length,int weight,int[] vin,int[] win){
         v = new int[length+1];
@@ -35,7 +40,22 @@ public class DynamicKnapSack {
         int[] w = {0, 10, 20, 30};
         int weight = 50;
         DynamicKnapSack knapsack = new DynamicKnapSack(3, weight, v, w);
-        System.out.print(knapsack.solve());
+        System.out.println(knapsack.solve());
+
+//       StringBuffer str= new StringBuffer(3);
+//       str.append("hellp");
+//       System.out.println(str.length()+ "."+ str.capacity());
+//        char a = 'g';
+//        System.out.println(Character.toString(a));
+//        System.out.println(String.valueOf(a));
+
+        List<String> list = new ArrayList<>();
+        list.add("f1");
+        list.remove("f1");
+        for(String s:list){
+            System.out.println(s);
+        }
+
     }
 
 }

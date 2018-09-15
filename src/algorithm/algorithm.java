@@ -41,36 +41,34 @@ public class algorithm {
     public static void main(String[] args){
 //        Hanoi(3,'a','b','c');
 //        System.out.print(minEditDistance("zhanghua","zhanghau"));
-//        int arr[] = {1,-1,2,-3,4,-5,6,-7};
-//        /* 计算LIS长度 */
-//        System.out.println(getLongestIncreasingSubsequence(arr));
-        System.out.println(countMinSetp(2,100));    //result:14
+        int arr[] = {1,3,2,5};//{1,-1,2,-3,4,-5,6,-7};
+        /* 计算LIS长度 */
+        System.out.println(lengthOfLIS(arr));
+//        System.out.println(countMinSetp(2,100));    //result:14
+    }
+
+    /**
+     * 最长递增子系列
+     * @param num int[]
+     * @return int
+     */
+    public static int lengthOfLIS(int[] num){
+        int[] dp = new int[num.length];
+        int len = 0;
+        for(int n:num){
+            int i = Arrays.binarySearch(num,0,len,n);
+            System.out.println(i);
+            if(i < 0) i=-(i+1);
+            dp[i] = n;
+            if(i == len) len++;
+        }
+        return len;
     }
 
 
     static int[] MaxV=new int[30];   /* 存储长度i+1（len）的子序列最大元素的最小值 */
 
-    /**
-     * 最长递增子系列
-     * @param arr int[]
-     * @return int
-     */
-    static int getLongestIncreasingSubsequence(int[] arr){
-        MaxV[0] = arr[0];
-        int len = arr.length;
-        int index = 1;
-        for(int i=1;i<len;i++){
-            if(arr[i] > arr[index-1] ){
-                arr[index++] = arr[i];
-            }else{
-                int position = Arrays.binarySearch(MaxV,arr[i]);
-                position = position == -1 ? 0:position;
-                System.out.println(position);
-                MaxV[position] = arr[i];
-            }
-        }
-        return index;
-    }
+
 
 
     private int max = 0;
