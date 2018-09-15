@@ -205,4 +205,82 @@ public class algorithm {
     public static void move(char a,char b){
         System.out.println(a+"->"+b);
     }
+
+
+    /**
+     * 最长回文子串  516
+     * @param s String
+     * @return int
+     */
+
+    public int longestPalindromeSubseq(String s) {
+        if(s == null || s.length() == 0) return 0;
+        int n = s.length();
+        int[][] dp = new int[n][n];
+        for(int i=n-1;i>=0;i--){
+            dp[i][i] = 1;
+            for(int j=i+1;j<n;j++){
+                if(s.charAt(i) == s.charAt(j)){
+                    dp[i][j] = dp[i+1][j-1]+2;
+                }else{
+                    dp[i][j] = Math.max(dp[i+1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[0][n-1];
+    }
+
+
+    /**
+     * 416. Partition Equal Subset Sum
+     * @param nums int[]
+     * @return boolean
+     */
+    public boolean canPartition(int[] nums) {
+        if(nums == null || nums.length == 0) return true;
+        int sum=0;
+        for(int num:nums){
+            sum+=num;
+        }
+        if((sum & 1) == 1) return false;
+        sum/=2;
+        int n=nums.length;
+        // boolean[][] dp = new boolean[n+1][sum+1];
+        // dp[0][0] = true;
+        // for(int i=1;i<nums.length;i++){
+        //     dp[i][0] = true;
+        // }
+        // for(int i=1;i<n+1;i++){
+        //     for(int j=1;j<sum+1;j++){
+        //         dp[i][j] = dp[i-1][j];
+        //         if(j >= nums[i-1]){
+        //             dp[i][j] = dp[i][j] || dp[i-1][j-nums[i-1]];
+        //         }
+        //     }
+        // }
+        // return dp[n][sum];
+
+        boolean[] dp= new boolean[sum+1];
+        dp[0] = true;
+        for(int num:nums){
+            for(int i=sum;i>=num;i--){
+
+                dp[i] = dp[i] || dp[i-num];
+
+            }
+        }
+        return dp[sum];
+
+        /**
+         * 求最后的个数
+         */
+//        int[] dp = new int[sum+1];
+//        dp[0] = 1;
+//        for(int num:nums){
+//            for(int i=sum;i>=num;i--){
+//                dp[i] += dp[i-num];
+//            }
+//        }
+//        return dp[sum];
+    }
 }
