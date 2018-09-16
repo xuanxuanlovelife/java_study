@@ -58,7 +58,7 @@ public class Sort {
                     didSwap = true;
                 }
             }
-            if(didSwap){
+            if(!didSwap){
                 return;
             }
         }
